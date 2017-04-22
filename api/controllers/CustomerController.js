@@ -10,7 +10,7 @@ module.exports = {
 	'new':function(req, res){
 		res.view();
 	},
-	
+
 	create:function(req,res,next){
 		Customer.create(req.params.all(), function customerCreated(err, customer){
 			if(err) return next(err);
@@ -19,16 +19,16 @@ module.exports = {
 		});
 	},
 
-	show:function(req,res,next){
-		Customer.findOne(req.param('id'), function foundCustomer(err, customer){
-			if(err) return next(err);
-			if(!customer) return next();
+  show: function (req, res, next) {
+    Customer.findOne(req.param('id')).populateAll().exec(function foundCustomer(err, customer) {
+      if (err) return next(err);
+      if (!customer) return next();
 
-			res.view({
-				customer: customer
-			});
-		});
-	},
+      res.view({
+        customer: customer
+      });
+    });
+  },
 
 	index:function(req,res,next){
 		Customer.find(function foundCustomer(err, customers){
@@ -38,7 +38,7 @@ module.exports = {
 				customers: customers
 			});
 		});
-	}, 
+	},
 
 	edit:function(req,res,next){
 		Customer.findOne(req.param('id'), function foundCustomer(err, customer){
@@ -50,7 +50,7 @@ module.exports = {
 			});
 		});
 	},
-	
+
 	update:function(req,res,next){
 		Customer.update(req.param('id'), req.params.all(), function customerUpdated(err){
 			if(err) {
@@ -65,7 +65,7 @@ module.exports = {
 		Customer.destroy(req.param('id')).exec(function(){
 			res.redirect('/customer/');
 		});
-	},	
+	},
 
 };
 
