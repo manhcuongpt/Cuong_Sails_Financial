@@ -1,0 +1,30 @@
+<h1><%= user1.firstName %></h1>
+<hr>
+<h3>Email: <%= user1.lastName %></h3>
+<hr>
+<h3>Pets</h3>
+<table>
+  <tr>
+    <th>Breed</th>
+    <th>Type</th>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% _.each(user1.pets, function(pet) {%>
+  <tr data-id="<%= pet.id%>" data-model="pet" >
+    <td><%= pet.breed %></td>
+    <td><%= pet.type %></td>
+    <td><%= pet.name %></td>
+    <td><a href="/pet/show/<%= pet.id %>">Show</a></td>
+    <td><a href="/pet/edit/<%= pet.id %>">Edit</a></td>
+    <td><a href="/pet/destroy/<%= pet.id %>">Delete</a></td>
+  </tr>
+  <% }) %>
+</table>
+
+<form action="/pet/new" method="POST">
+	<input type="hidden" value="<%= user1.id %>" name="owners" >
+	<input type="submit" value="Add Pet" />
+</form>

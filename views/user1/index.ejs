@@ -1,0 +1,21 @@
+<h3>User1</h3>
+<table>
+	<tr>
+		<th>ID</th>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th></th>
+		<th></th>
+		<th></th>
+	</tr>
+	<% _.each(user1s, function(user1) {%>
+	<tr data-id="<%= user1.id%>" data-model="user1" >
+		<td><%= user1.id %></td>
+		<td><%= user1.firstName %></td>
+		<td><%= user1.lastName %></td>
+		<td><a href="/user1/show/<%= user1.id %>">Show</a></td>
+		<td><a href="/user1/edit/<%= user1.id %>">Edit</a></td>
+		<td><a href="/user1/destroy/<%= user1.id %>">Delete</a></td>
+	</tr>
+	<% }) %>
+</table>
