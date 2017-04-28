@@ -27,7 +27,7 @@ module.exports = {
   },
 
   show: function (req, res, next) {
-    User1.findOne(req.param('id')).exec(function foundUser1(err, user1) {
+    User1.findOne(req.param('id')).populateAll().exec(function foundUser1(err, user1) {
       if (err) return next(err);
       if (!user1) return next();
 

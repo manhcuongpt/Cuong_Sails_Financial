@@ -7,15 +7,8 @@
 
 module.exports = {
 
-  'new':function(req,res,next){
-    Pet.findOne(req.param('owners'), function foundPet(err, pet){
-      if(err) return next(err);
-      if(!pet) return next();
-
-      res.view({
-        pet: pet
-      });
-    });
+  'new':function(req, res){
+    res.view();
   },
 
   create:function(req,res,next){
